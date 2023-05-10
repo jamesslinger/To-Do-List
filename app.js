@@ -13,7 +13,7 @@ app.use(express.static("public"));
 
 main().catch(err => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb+srv://'+process.env.MONGODB_USER+':'+process.env.MONGODB_PW+'@tdl1.jppfsml.mongodb.net/todolistDB');
+  await mongoose.connect('mongodb+srv://'+process.env.MONGODB_USER+':'+process.env.MONGODB_PW+'@tdl1.jppfsml.mongodb.net/TDL1?retryWrites=true&w=majority');
 };
 
 const today = new Date();
@@ -87,5 +87,5 @@ app.get("/about", function(req, res){
 
 
 app.listen(port, function() {
-  console.log("Server started on port " + port);
+  console.log("Server started...");
 });
