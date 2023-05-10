@@ -1,0 +1,42 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
+
+<div class="list-box-bg sortable">
+  <% ListItems.forEach(item => { %>
+  <div class="box list-box">
+    <form action="/delete" method="post">
+      <div class="item">
+        <input
+          type="checkbox"
+          name="checkbox"
+          value="<%=item._id%>"
+          onChange="this.form.submit()"
+        />
+        <p><%=item.name%></p>
+      </div>
+    </form>
+  </div>
+  <% }) %>
+
+  <div class="box add-box">
+    <form class="item" action="/" method="post">
+      <input
+        type="text"
+        name="newItem"
+        placeholder="Just start typing . . ."
+        autocomplete="off"
+        autofocus
+      />
+      <button type="submit" name="button">+</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  $(".sortable").sortable();
+</script>
+
+<%- include("footer") -%>
