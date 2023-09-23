@@ -16,16 +16,6 @@ async function main() {
   await mongoose.connect('mongodb+srv://'+process.env.MONGODB_USER+':'+process.env.MONGODB_PW+'@tdl1.jppfsml.mongodb.net/TDL1?retryWrites=true&w=majority');
 };
 
-const today = new Date();
-const dateOptions = {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-};
-
-const currentDay = today.toLocaleDateString('en-GB', dateOptions);
-
 const itemsSchema = new mongoose.Schema ({
   name: String
 });
@@ -58,7 +48,7 @@ app.get("/", function(req, res) {
         Item.insertMany(defaultItems)
         res.redirect('/');
       } else { 
-        res.render("list", {listTitle: currentDay, ListItems: foundItems});  
+        res.render("list", {ListItems: foundItems});  
   }})
 });
 
@@ -78,14 +68,14 @@ app.post('/delete', function(req, res) {
 });
 
 app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
+  res.render("list", {newListItems: workItems});
 });
 
 app.get("/about", function(req, res){
   res.render("about");
 });
 
-
-app.listen(port, function() {
-  console.log("Server started...");
+app.listen(port, function(err) {
+  if (err) console.log('Error at server start', err);
+  console.log("Server started");
 });

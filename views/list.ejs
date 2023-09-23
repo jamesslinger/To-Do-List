@@ -1,7 +1,7 @@
 <%- include("header") -%>
 
 <div class="box" id="heading">
-  <h1><%= listTitle %></h1>
+  <h1 id="todayDate"></h1>
 </div>
 
 <div class="list-box-bg sortable">
@@ -36,6 +36,19 @@
 </div>
 
 <script>
+  function updateDate() {
+    const today = new Date();
+    const dateOptions = {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    };
+    const currentDay = today.toLocaleDateString('en-GB', dateOptions);
+    $("#todayDate").text(currentDay)
+  };
+  updateDate();
+  setInterval(updateDate, 1000 * 60 * 60 * 1);
   $(".sortable").sortable();
 </script>
 
