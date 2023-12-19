@@ -142,7 +142,7 @@ footer a:hover {
   .list-box,
   .item,
   input[type="text"] {
-    max-width: 82svw;
+    max-width: 90vw;
     min-height: 150px;
     font-size: 2.2rem;
   }
