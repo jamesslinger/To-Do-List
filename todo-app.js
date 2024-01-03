@@ -42,6 +42,7 @@ const item4 = new Item ({
 const defaultItems = [item1, item2, item3, item4];
 
 app.get("/", function(req, res) {
+  const year = new Date().getFullYear();
   const foundItems = Item.find({})
     .then(
       (foundItems) => {
@@ -49,7 +50,7 @@ app.get("/", function(req, res) {
         Item.insertMany(defaultItems)
         res.redirect('/');
       } else { 
-        res.render("list", {ListItems: foundItems});  
+        res.render("list", {ListItems: foundItems, Year: year});  
   }})
 });
 
@@ -78,5 +79,4 @@ app.get("/about", function(req, res){
 
 app.listen(port, hostname, function(err) {
   if (err) console.log('Error at server start', err);
-  console.log(`Server started at http://${hostname}:${port}/`);
 });
